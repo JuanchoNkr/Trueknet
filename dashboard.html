@@ -11,7 +11,7 @@
 
 <header class="navbar">
 
-<h2>TruequeHub</h2>
+<h2>Trueknet</h2>
 
 <div>
 Bienvenido <strong id="userName"></strong>
@@ -20,20 +20,34 @@ Bienvenido <strong id="userName"></strong>
 
 </header>
 
-
 <section class="formulario">
 
 <h2>Publicar Trueque</h2>
 
-<input id="titulo" type="text" placeholder="Qué ofreces">
+<input id="titulo" placeholder="Qué ofreces">
+<input id="descripcion" placeholder="Descripción">
+<input id="busca" placeholder="Qué buscas a cambio">
+<input id="imagen" placeholder="URL imagen">
 
-<input id="descripcion" type="text" placeholder="Descripción">
-
-<input id="busca" type="text" placeholder="Qué buscas a cambio">
-
-<input id="imagen" type="text" placeholder="URL de imagen">
+<select id="categoria">
+<option value="tecnologia">Tecnología</option>
+<option value="ropa">Ropa</option>
+<option value="servicios">Servicios</option>
+<option value="hogar">Hogar</option>
+</select>
 
 <button onclick="createTrade()">Publicar</button>
+
+</section>
+
+
+<section class="categories">
+
+<button onclick="filterCategory('todos')">Todos</button>
+<button onclick="filterCategory('tecnologia')">Tecnología</button>
+<button onclick="filterCategory('ropa')">Ropa</button>
+<button onclick="filterCategory('servicios')">Servicios</button>
+<button onclick="filterCategory('hogar')">Hogar</button>
 
 </section>
 
