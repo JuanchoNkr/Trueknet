@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkSession(); showUser(); loadTrades();">
+
+<header class="navbar">
+
+<h2>TruequeHub</h2>
+
+<div>
+Bienvenido <strong id="userName"></strong>
+<button onclick="logout()">Cerrar sesión</button>
+</div>
+
+</header>
+
+
+<section class="formulario">
+
+<h2>Publicar Trueque</h2>
+
+<input id="titulo" type="text" placeholder="Qué ofreces">
+
+<input id="descripcion" type="text" placeholder="Descripción">
+
+<input id="busca" type="text" placeholder="Qué buscas a cambio">
+
+<input id="imagen" type="text" placeholder="URL de imagen">
+
+<button onclick="createTrade()">Publicar</button>
+
+</section>
+
+
+<section class="listado">
+
+<h2>Trueques disponibles</h2>
+
+<div id="tradesContainer" class="cards"></div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
