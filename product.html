@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Detalle del trueque</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadProduct()">
+
+<header class="navbar">
+
+<h2>Trueknet</h2>
+
+<nav>
+<a href="dashboard.html">Inicio</a>
+<button onclick="logout()">Cerrar sesión</button>
+</nav>
+
+</header>
+
+<section class="product-container">
+
+<img id="productImage">
+
+<div class="product-info">
+
+<h2 id="productTitle"></h2>
+
+<p id="productDescription"></p>
+
+<p class="busca">
+Busca a cambio:
+<strong id="productExchange"></strong>
+</p>
+
+<h3>Proponer un trueque</h3>
+
+<input id="offerInput" placeholder="¿Qué ofreces a cambio?">
+
+<button onclick="makeOffer()">Enviar propuesta</button>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
