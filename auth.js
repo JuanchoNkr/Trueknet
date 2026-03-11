@@ -6,22 +6,15 @@ let password = document.getElementById("password").value
 
 let users = JSON.parse(localStorage.getItem("users")) || []
 
-let user = {
-name,
-email,
-password
-}
+users.push({name,email,password})
 
-users.push(user)
-
-localStorage.setItem("users", JSON.stringify(users))
+localStorage.setItem("users",JSON.stringify(users))
 
 alert("Usuario registrado")
 
 window.location.href="login.html"
 
 }
-
 
 function login(){
 
@@ -30,11 +23,11 @@ let password = document.getElementById("password").value
 
 let users = JSON.parse(localStorage.getItem("users")) || []
 
-let user = users.find(u => u.email === email && u.password === password)
+let user = users.find(u => u.email===email && u.password===password)
 
 if(user){
 
-localStorage.setItem("session", JSON.stringify(user))
+localStorage.setItem("session",JSON.stringify(user))
 
 window.location.href="dashboard.html"
 
