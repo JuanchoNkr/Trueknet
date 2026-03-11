@@ -1,3 +1,5 @@
+let trades = JSON.parse(localStorage.getItem("trades")) || []
+
 function checkSession(){
 
 let session = JSON.parse(localStorage.getItem("session"))
@@ -8,19 +10,11 @@ window.location.href="login.html"
 
 }
 
-function getUser(){
-return JSON.parse(localStorage.getItem("session"))
-}
-
 function showUser(){
 
-let user = getUser()
+let user = JSON.parse(localStorage.getItem("session"))
 
-let element = document.getElementById("userName")
-
-if(user && element){
-element.innerText = user.name
-}
+document.getElementById("userName").innerText=user.name
 
 }
 
@@ -32,25 +26,26 @@ window.location.href="index.html"
 
 }
 
-let trades = JSON.parse(localStorage.getItem("trades")) || []
-
 function createTrade(){
 
-let titulo = document.getElementById("titulo").value
-let descripcion = document.getElementById("descripcion").value
-let busca = document.getElementById("busca").value
-let imagen = document.getElementById("imagen").value
+let titulo=document.getElementById("titulo").value
+let descripcion=document.getElementById("descripcion").value
+let busca=document.getElementById("busca").value
+let imagen=document.getElementById("imagen").value
+let categoria=document.getElementById("categoria").value
 
-let trade = {
+let trade={
+id:Date.now(),
 titulo,
 descripcion,
 busca,
-imagen
+imagen,
+categoria
 }
 
 trades.push(trade)
 
-localStorage.setItem("trades", JSON.stringify(trades))
+localStorage.setItem("trades",JSON.stringify(trades))
 
 loadTrades()
 
@@ -58,15 +53,13 @@ loadTrades()
 
 function loadTrades(){
 
-let container = document.getElementById("tradesContainer")
-
-if(!container) return
+let container=document.getElementById("tradesContainer")
 
 container.innerHTML=""
 
-trades.forEach(t => {
+trades.forEach(t=>{
 
-container.innerHTML += `
+container.innerHTML+=`
 
 <div class="card">
 
@@ -79,6 +72,71 @@ container.innerHTML += `
 <p>${t.descripcion}</p>
 
 <p class="busca">Busca: ${t.busca}</p>
+
+<button onclick="viewProduct(${t.id})">Ver detalle</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+}
+
+function viewProduct(id){
+
+localStorage.setItem("selectedProduct",id)
+
+window.location.href="product.html"
+
+}
+
+function loadProduct(){
+
+let id=localStorage.getItem("selectedProduct")
+
+let product=trades.find(t=>t.id==id)
+
+document.getElementById("productTitle").innerText=product.titulo
+document.getElementById("productDescription").innerText=product.descripcion
+document.getElementById("productExchange").innerText=product.busca
+document.getElementById("productImage").src=product.imagen
+
+}
+
+function makeOffer(){
+
+let offer=document.getElementById("offerInput").value
+
+alert("Propuesta enviada: "+offer)
+
+}
+
+function filterCategory(cat){
+
+let container=document.getElementById("tradesContainer")
+
+container.innerHTML=""
+
+trades
+.filter(t=>cat==="todos"||t.categoria===cat)
+.forEach(t=>{
+
+container.innerHTML+=`
+
+<div class="card">
+
+<img src="${t.imagen}">
+
+<div class="card-body">
+
+<h3>${t.titulo}</h3>
+
+<p>${t.descripcion}</p>
+
+<button onclick="viewProduct(${t.id})">Ver detalle</button>
 
 </div>
 
